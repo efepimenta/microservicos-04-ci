@@ -29,7 +29,7 @@
 # - 'gcr.io/$PROJECT_ID/go-test:1.0.0'
 
 steps:
--  name: 'gcr.io/$PROJECT_ID/docker-compose:1.24.0'
+- name: 'gcr.io/$PROJECT_ID/docker-compose:1.24.0'
   args: ['-f', 'docker-compose.yaml', 'up', '-d']
 - name: 'gcr.io/cloud-builders/go'
   args: ['test', 'go-soma']
