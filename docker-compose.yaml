@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+
+    go-test:
+        build: .
+        container_name: go-test
+        tty: true
+        environment:
+            - GOPATH=/go/src/
+        # volumes:
+        #     - ./src:/go/

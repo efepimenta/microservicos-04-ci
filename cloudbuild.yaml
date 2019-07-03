@@ -1,0 +1,20 @@
+steps:
+
+    - id: "rodando docker-compose"
+      name: 'gcr.io/$PROJECT_ID/docker-compose:1.24.0'
+      args: ['-f', 'docker-compose.yaml', 'up', '-d']
+
+      - id: "somando"
+      name: 'gcr.io/cloud-builders/docker'
+          - id: "rodando composer"
+      name: 'gcr.io/cloud-builders/docker'
+      go test -cover ./src/go-soma/^C
+      args: ['exec', '-t', 'go-test', '/go/bin/soma']
+
+      - id: "rodando teste"
+      name: 'gcr.io/cloud-builders/docker'
+      args: ['exec', '-t', 'go-test', 'go', 'test', '-cover', './src/go-soma']
+
+images:
+- 'gcr.io/$PROJECT_ID/go-test:latest'
+- 'gcr.io/$PROJECT_ID/go-test:1.0.0'
