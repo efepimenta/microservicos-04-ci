@@ -4,19 +4,8 @@ steps:
       name: 'gcr.io/$PROJECT_ID/docker-compose:1.24.0'
       args: ['-f', 'docker-compose.yaml', 'up', '-d']
 
-    - id: "buildando"
-      name: 'gcr.io/cloud-builders/docker'
-      args: ['build', '--tag=gcr.io/$PROJECT_ID/go-soma', '.']
-
-    - id: "somando"
-      name: 'gcr.io/cloud-builders/docker'
-      args: ['exec', '-t', 'go-test', '/go/bin/soma']
-
-    - id: "rodando teste"
-      name: 'gcr.io/cloud-builders/docker'
-      args: ['exec', '-t', 'go-test', 'go', 'test', '-cover', './src/go-soma']
-
-    - name: 'gcr.io/cloud-builders/go'
+    - id: "montando imagem"
+      name: 'gcr.io/cloud-builders/go'
       args:
       - 'build'
       - 'version=1.0.0'
@@ -25,8 +14,23 @@ steps:
       - '-t'
       - 'gcr.io/$PROJECT_ID/go-test:1.0.0'
       - '.'
-    - name: 'gcr.io/$PROJECT_ID/go-test'
+    - id: "criando imagem"
+      name: 'gcr.io/$PROJECT_ID/go-test'
       args: ['version']
+
+    # - id: "buildando"
+    #   name: 'gcr.io/cloud-builders/docker'
+    #   args: ['build', '--tag=gcr.io/$PROJECT_ID/go-soma', '.']
+
+    # - id: "somando"
+    #   name: 'gcr.io/cloud-builders/docker'
+    #   args: ['exec', '-t', 'go-test', '/go/bin/soma']
+
+    # - id: "rodando teste"
+    #   name: 'gcr.io/cloud-builders/docker'
+    #   args: ['exec', '-t', 'go-test', 'go', 'test', '-cover', './src/go-soma']
+
+    
 
 images:
 - 'gcr.io/$PROJECT_ID/go-test:latest'
