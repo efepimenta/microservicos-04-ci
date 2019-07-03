@@ -12,6 +12,19 @@ steps:
       name: 'gcr.io/cloud-builders/docker'
       args: ['exec', '-t', 'go-test', 'go', 'test', '-cover', './src/go-soma']
 
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+    - 'build'
+    - '--build-arg'
+    - 'version=1.0.0'
+    - '-t'
+    - 'gcr.io/$PROJECT_ID/go-test:latest'
+    - '-t'
+    - 'gcr.io/$PROJECT_ID/go-test:1.0.0'
+    - '.'
+  - name: 'gcr.io/$PROJECT_ID/go-test'
+    args: ['version']
+
 images:
 - 'gcr.io/$PROJECT_ID/go-test:latest'
 - 'gcr.io/$PROJECT_ID/go-test:1.0.0'
