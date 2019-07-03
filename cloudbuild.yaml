@@ -4,16 +4,17 @@ steps:
       name: 'gcr.io/$PROJECT_ID/docker-compose:1.24.0'
       args: ['-f', 'docker-compose.yaml', 'up', '-d']
 
-    - id: "montando imagem"
-      name: 'gcr.io/cloud-builders/go'
-      args:
-      - 'build'
-      - 'version=1.0.0'
-      - '-t'
-      - 'gcr.io/$PROJECT_ID/go-test:latest'
-      - '-t'
-      - 'gcr.io/$PROJECT_ID/go-test:1.0.0'
-      - '.'
+    # - id: "montando imagem"
+    #   name: 'gcr.io/cloud-builders/go'
+    #   args:
+    #   - 'build'
+    #   - 'version=1.0.0'
+    #   - '-t'
+    #   - 'gcr.io/$PROJECT_ID/go-test:latest'
+    #   - '-t'
+    #   - 'gcr.io/$PROJECT_ID/go-test:1.0.0'
+    #   - '.'
+    
     - id: "criando imagem"
       name: 'gcr.io/$PROJECT_ID/go-test'
       args: ['version']
