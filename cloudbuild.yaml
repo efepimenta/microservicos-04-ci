@@ -2,7 +2,7 @@ steps:
 - name: 'gcr.io/$PROJECT_ID/docker-compose:1.24.0'
   args: ['-f', 'docker-compose.yaml', 'up', '-d', '--build']
 
-- name: 'gcr.io/$PROJECT_ID/go-test'
+- name: 'gcr.io/$PROJECT_ID/go-test:latest'
   args: ['test', '-cover', '/go/src/go-soma']
 
-images: ['gcr.io/$PROJECT_ID/go-test']
+images: ['gcr.io/$PROJECT_ID/go-test:latest']
