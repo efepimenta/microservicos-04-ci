@@ -2,12 +2,7 @@ steps:
 - name: 'gcr.io/$PROJECT_ID/docker-compose:1.24.0'
   args: ['-f', 'docker-compose.yaml', 'up', '-d', '--build']
 
-# - name: 'gcr.io/cloud-builders/docker'
-#   args: ['build', '-t', 'gcr.io/$PROJECT_ID/go-test', '.']
-
 - name: 'gcr.io/$PROJECT_ID/go-test'
   args: ['go', 'test', '-cover', '/go/src/go-soma']
 
 images: ['gcr.io/$PROJECT_ID/go-test']
-
-# RUN go build -ldflags "-w" -o /go/bin/soma /go/src/go-soma/go-soma.go
