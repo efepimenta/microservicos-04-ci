@@ -3,6 +3,6 @@ steps:
   args: ['-f', 'docker-compose.yaml', 'up', '-d', '--build']
 
 - name: 'gcr.io/$PROJECT_ID/go-test'
-  args: ['go', 'test', '-cover', '/go/src/go-soma']
+  args: ['test', '-cover', '/go/src/go-soma']
 
 images: ['gcr.io/$PROJECT_ID/go-test']
